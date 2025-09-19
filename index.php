@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home Page - PHP CRUD Membership Authentication</title>
+        <title>Main Page - PHP CRUD Membership Authentication</title>
         <link rel="stylesheet" href="">
     </head>
 

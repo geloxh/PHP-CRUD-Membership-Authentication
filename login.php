@@ -10,7 +10,7 @@
     <body>
         <h2>Login Page</h2>
         <a href="index.php">Return to Main Page<br/><br/>
-        <form action="login.php" method="POST">
+        <form action="checklogin.php" method="POST">
             Username: <input type="text"
             name="username" required="required" /><br/>
             Password: <input type="password"

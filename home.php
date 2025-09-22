@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['user'])) { // Checks if the users is logged in
+        header("location: index.php"); // Redirects if user is not logged in
+        exit();
+    }
+    $user = $_SESSION['user']; // Assigns user value
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,16 +15,7 @@
         <title>Home Page - PHP CRUD Membership Authentication</title>
         <link rel="stylesheet" href="css/styles.css">
     </head>
-
-    <?php
-    session_start(); // Starts the session
-    if($_SESSION['user']) { // Checks if the users is Logged in
-    } else {
-        header("location: index.php"); // Redirects if user is not Logged in
-    }
-    $user = $_SESSION['user']; // Assigns user value
-    ?>
-
+    
     <body>
         <h2>PHP CRUD Membership Authentication</h2>
         <p>Hello <?php print "$user"?>!</p> <!-- Displays user's name -->

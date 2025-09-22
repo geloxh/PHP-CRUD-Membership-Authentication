@@ -12,7 +12,7 @@
         }
 
         // Prepare a statement to prevent SQL injection
-        $stmt = mysql_prepare($conn, "SELECT password FROM users WHERE username = ?");
+        $stmt = mysqli_prepare($conn, "SELECT password FROM users WHERE username = ?");
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
@@ -22,7 +22,7 @@
             mysqli_stmt_fetch($stmt);
 
             // Verify the password
-            if (password_verify($password, hashed_password)) {
+            if (password_verify($password, $hashed_password)) {
                 $_SESSION['user'] = $username;
                 header("location: index.php"); // Redirect to a welcome page
             } else {

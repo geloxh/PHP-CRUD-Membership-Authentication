@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login Page - PHP CRUD Memebership Aunthentication</title>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
 
     <body>
@@ -18,4 +18,5 @@
             <input type="submit" value="Login" />
         </form>
     </body>
+    <script src="js/main.js"></script>
 </html>

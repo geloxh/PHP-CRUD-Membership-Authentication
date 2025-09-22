@@ -24,7 +24,7 @@
             // Verify the password
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['user'] = $username;
-                header("location: index.php"); // Redirect to a welcome page
+                header("location: home.php"); // Redirect to a welcome page
             } else {
                 // Incorrect password
                 print '<script>alert("Incorrect Password!");</script>';

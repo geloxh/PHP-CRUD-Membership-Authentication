@@ -15,7 +15,7 @@
         <?php
             if(isset($_SESSION['user'])) {
                 echo "Hello " . $_SESSION['user'] . "<br/>";
-                echo "<a href='logout.php'>Signout</a>";
+                echo "<a href='logout.php'>Sign-out</a>";
             } else {
                 echo "<a href='login.php'>Sign-in</a><br/>";
                 echo "<a href='register.php'>Register</a>";

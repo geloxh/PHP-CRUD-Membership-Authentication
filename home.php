@@ -19,7 +19,7 @@
     <body>
         <h2>PHP CRUD Membership Authentication</h2>
         <p>Hello <?php print "$user"?>!</p> <!-- Displays user's name -->
-        <a href="logout.php">Signout</a><br/><br/>
+        <a href="logout.php">Sign-out</a><br/><br/>
         <form action="add.php" method="POST">
             Add more to list: <input type="text" name="details" /> <br/>
             Public post? <input type="checkbox" name="public[]" value="yes" /> <br/>

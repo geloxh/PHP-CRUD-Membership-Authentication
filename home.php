@@ -14,6 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home Page - PHP CRUD Membership Authentication</title>
         <link rel="stylesheet" href="css/styles.css">
+        <script src="js/main.js"></script>
     </head>
     
     <body>
@@ -59,7 +60,7 @@
                         echo "<td>" . htmlspecialchars($row['details']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['date_posted']) . " - " . htmlspecialchars($row['time_posted']) . "</td>";
                         echo "<td><a href='edit.php?id=$id'>Edit</a></td>";
-                        echo "<td><a href='delete.php?id=$id'>Delete</a></td>";
+                        echo "<td><a href='#' onclick='delete_item($id)'>Delete</a></td>";
                         echo "<td>" . htmlspecialchars($row['is_public']) . "</td>";
                         echo "</tr>";
                     }
@@ -71,5 +72,4 @@
             ?>
         </table>
     </body>
-    <script src="js/main.js"></script>
 </html>

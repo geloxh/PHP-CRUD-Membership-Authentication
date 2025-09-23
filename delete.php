@@ -1,13 +1,13 @@
 <?php
     session_start();
     // Redirect user to index page if not logged in
-    if(!asset($_SESSION['user'])) {
+    if(!isset($_SESSION['user'])) {
         header("location: index.php");
         exit();
     }
 
     // Check if 'id' is set in the GET request
-    if(!isset($_GET['id'])) {
+    if(isset($_GET['id'])) {
         $id = $_GET['id'];
         $user = $_SESSION['user'];
 

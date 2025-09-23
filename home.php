@@ -39,8 +39,9 @@
                 <th>Public</th>
             </tr>
             <?php
+                // Establish database connection
                 $conn = mysqli_connect("localhost", "root", "", "simple_db");
-                if (!conn) {
+                if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
 

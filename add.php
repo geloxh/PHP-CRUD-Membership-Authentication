@@ -29,7 +29,7 @@
 
         // Use a prepared statment to prevent SQL injection
         // This assumes the 'list' table has 'username' columns to associate the post with a user
-        $stmt = mysqli_prepare($conn, "INSERT INTO list (details, date_posted, time_posted, public, username) VALUES (?, ?, ?, ?, ?");
+        $stmt = mysqli_prepare($conn, "INSERT INTO `list` (`details`, `date_posted`, `time_posted`, `is_public`, `username`) VALUES (?, ?, ?, ?, ?");
         mysqli_stmt_bind_param($stmt, "sssss", $details, $date, $time, $is_public, $username);
 
         // Execute the statement and redirect

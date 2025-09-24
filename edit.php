@@ -5,31 +5,49 @@
         exit();
     }
 
+    $conn = mysqli_connect("localhost", "root", "", "simple_db");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
     if($_SERVER['REQUEST_METHOD'] == "GET") {
-        $conn = mysqli_connect("localhost", "root", "", "simple_db");
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
 
-        $id = mysqli_real_escape_string($conn, $_GET['id']);
-        $user = mysqli_real_escape_string($conn, $_SESSION['user']);
+        $id = $_GET['id'];
+        $user = $_SESSION['user'];
 
-        $query = mysqli_query($conn, "SELECT * FROM list WHERE id = '$id' AND username = '$user'");
-        $count = mysqli_num_rows($query);
+        $stmt = mysqli_prepare($conn, "SELECT details, is_public FROM list WHERE id = ? AND username = ?");
+        mysql_stmt_bind_param($stmt, "is", $id, $user);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-        if($count > 0) {
-            $row = mysqli_fetch_array($query);
+        if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
             $details = $row['details'];
             $is_public = $row['is_public'];
         } else {
             header("location: home.php");
             exit();
         }
-        mysqli_close($conn);
-    } else {
+        mysqli_stmt_close($stmt);
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $id = $_GET['id'];
+        $details = $_POST['details'];
+        $is_public = "no";
+        if(isset($_POST['public']) && is_array($_POST['public']) && in_array("yes", $_POST['public'])) {
+            $is_public = "yes";
+        }
+        $user = $_SESSION['user'];
+
+        $stmt = mysqli_prepare($conn, "UPDATE list SET details = ?, is_public = ? WHERE id = ? AND username = ?");
+        mysqli_stmt_bind_param($stmt, "ssis", $details, $is_public, $id, $user);
+        mysqli_stmt_close($stmt);
+
         header("location: home.php");
         exit();
     }
+    mysqli_close($conn);
 
 ?>
 
@@ -45,7 +63,7 @@
     <body>
         <h2>Edit Item</h2>
         <a href="home.php">Home</a><br/><br/>
-        <form action="edit.php?id=<?php echo $id; ?>" method="POST">
+        <form action="edit.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST">
             <textarea name="details" required><?php echo htmlspecialchars($details); ?></textarea><br/>
             Public post? <input type="checkbox" name="public[]" value="yes" <?php if($is_public == 'yes') { echo "checked";} ?> /><br/>
             <input type="submit" value="Update List" />

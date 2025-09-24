@@ -28,7 +28,9 @@
         mysqli_close($conn);
     } else {
         header("location: home.php");
+        exit();
     }
+
 ?>
 
 <!DOCTYPE html>

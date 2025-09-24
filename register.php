@@ -18,7 +18,6 @@
             <input type="submit" value="Register" />
         </form>
     </body>
-    <script src="js/main.js"></script>
 </html>
 
 <?php

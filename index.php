@@ -12,15 +12,19 @@
     </head>
 
     <body>
-        <?php
-            if(isset($_SESSION['user'])) {
-                echo "Hello " . $_SESSION['user'] . "<br/>";
-                echo "<a href='logout.php'>Sign-out</a>";
-            } else {
-                echo "<a href='login.php'>Sign-in</a><br/>";
-                echo "<a href='register.php'>Register</a>";
-            }
-        ?>
+        <div class="container">
+            <h1>Welcome to PHP CRUD Membership Authentication</h1>
+            <?php
+                if(isset($_SESSION['user'])) {
+                    echo "Hello " . $_SESSION['user'] . "<br/>";
+                    echo '<a href="home.php" class="button">Go to Home</a>';
+                    echo "<a href='logout.php' class='button'>Sign-out</a>";
+                } else {
+                    echo "<p>Please sign-in or register to continue.</p>";
+                    echo "<a href='login.php' class='button'>Sign-in</a>";
+                    echo "<a href='register.php' class='button'>Register</a>";
+                }
+            ?>
+        </div>
     </body>
-    <script src="js/main.js"></script>
 </html>

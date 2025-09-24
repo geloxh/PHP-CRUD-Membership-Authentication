@@ -44,4 +44,35 @@
         <h2>Edit Item</h2>
         <a href="home.php">Home</a><br/><br/>
         <form action="edit.php?id=<?php echo $id; ?>" method="POST">
-            <textarea name="details" required><?php echo htmlspecialchars($details); ?></textarea
+            <textarea name="details" required><?php echo htmlspecialchars($details); ?></textarea><br/>
+            Public post? <input type="checkbox" name="public[]" value="yes" <?php if($is_public == 'yes') { echo "checked";} ?> /><br/>
+            <input type="submit" value="Update List" />
+        </form>
+    </body>
+</html>
+
+<?php
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $conn = mysqli_connect("localhost", "root", "", "simple_db");
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $id = mysqli_real_escape_string($conn, $_GET['id']);
+        $details = mysqli_real_escape_string($conn, $_POST['details']);
+        $is_public = "no";
+        if(isset($_POST['public']) && is_array($_POST['public']) && in_array("yes", $_POST['public'])) {
+            $is_public = "yes";
+        }
+
+        $user = mysqli_real_escape_string_string($conn, $_SESSION['user']);
+
+        mysqli_query($conn, "UPDATE list SET details = '$details', is_public = '$is_public' WHERE id = '$id' AND username = '$user'");
+
+        mysqli_close($conn);
+
+        header("location: home.php");
+
+        exit();
+    }
+?>

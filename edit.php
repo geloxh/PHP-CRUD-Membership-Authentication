@@ -73,7 +73,7 @@
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        $id = mysqli_real_escape_string($conn, $_GET['id']);
+        $id = mysqli_real_escape_string($conn, $_GET['id']); // Retrieves the item(id) from the URL ($_GET['id']).
         $details = mysqli_real_escape_string($conn, $_POST['details']);
         $is_public = "no";
         if(isset($_POST['public']) && is_array($_POST['public']) && in_array("yes", $_POST['public'])) {
